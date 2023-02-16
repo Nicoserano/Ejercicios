@@ -53,9 +53,9 @@ public class CuerpoCeleste {
         return
             "[Id:" + id +            // Agrega el ID del CuerpoCeleste a la cadena
             "|| Nombre:" + nombre +  // Agrega el nombre del CuerpoCeleste a la cadena
-            "|| Masa:" + masa +      // Agrega la masa del CuerpoCeleste a la cadena
-            "|| Densidad:" + densidad +  // Agrega la densidad del CuerpoCeleste a la cadena
-            "|| Diametro:" + diametro +  // Agrega el diámetro del CuerpoCeleste a la cadena
-            "|| DistanciaAlSol:" + distanciaAlSol +"]";  // Agrega la distancia del CuerpoCeleste al Sol a la cadena
+            "|| Masa:" + masa + " kg"+     // Agrega la masa del CuerpoCeleste a la cadena
+            "|| Densidad:" + densidad+" g/cm^3" +  // Agrega la densidad del CuerpoCeleste a la cadena
+            "|| Diametro:" + diametro+" km" +  // Agrega el diámetro del CuerpoCeleste a la cadena
+            "|| DistanciaAlSol:" + distanciaAlSol +" km ]";  // Agrega la distancia del CuerpoCeleste al Sol a la cadena
     }
 }
