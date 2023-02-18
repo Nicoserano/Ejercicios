@@ -1,14 +1,20 @@
-import logica.*;
+import logica.Avion;
+import logica.Bicicleta;
+import logica.Coche;
+import logica.Lancha;
+import logica.Vehiculo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static logica.Verificadores.verificarBooleano;
+import static logica.Avion.crearAvion;
+import static logica.Bicicleta.crearBicicleta;
+import static logica.Coche.crearCoche;
+import static logica.Lancha.crearLancha;
 import static logica.Verificadores.verificarEntero;
-import static logica.Verificadores.verificarEnum;
-import static logica.Verificadores.verificarFecha;
+
 
 /**
  * Clase principal que maneja la creación de vehículos y su almacenamiento.
@@ -22,7 +28,7 @@ public class Main {
         Scanner pregunta = new Scanner(System.in);
 
         int opcion;
-        int maximo = 0;
+        int numeroDeVehiculos = 0;
         do{
             // Menú de opciones
             System.out.println("1.Crea vehiculo");
@@ -31,62 +37,42 @@ public class Main {
 
             switch (opcion) {
                 case 1: {
+                    // Definición de una lista de objetos Vehiculo
                     List<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
-                    for( maximo = 1; maximo<=10;maximo++){
-                        System.out.println(maximo);
+
+                    // Creación de vehículos y agregado a la lista
+                    for( numeroDeVehiculos = 1; numeroDeVehiculos<=2;numeroDeVehiculos++){
+
+                        // Imprime una lista de categorías
+                        System.out.println(numeroDeVehiculos);
                         System.out.println("1.Lancha");
                         System.out.println("2.Coche");
                         System.out.println("3.Bicicleta");
                         System.out.println("4.Avion");
+
+                        // Solicita al usuario que seleccione una categoría
                         int categoria= verificarEntero(pregunta, "Escoja una categoria:");
+
+                        // Crea un objeto de la categoría seleccionada y lo agrega a la lista de vehículos
                         if (categoria == 1){
-                            int numeroDePasajeros = verificarEntero(pregunta, "Ingrese la cantidad de pasajeros:");
-                            boolean tripulacion = verificarBooleano(pregunta,"Ingrese si tiene tripulación (true/false):");
-                            int numeroDeRuedas= verificarEntero(pregunta,"Ingrese la cantidad de ruedas:" );
-                            LocalDate fecha = verificarFecha(pregunta,"Ingrese la fecha de matriculación (dd/MM/yyyy):");
-                            MedioDeDesplazamiento medio = verificarEnum(pregunta
-                                    ,"Ingrese el medio de desplazamiento :(Tierra/Agua/Aire)", MedioDeDesplazamiento.class);
-                            Color color = verificarEnum(pregunta, ("Ingrese el color (rojo, azul ,negro,blanco)"),Color.class);
-                            Material material = verificarEnum(pregunta,"ingrese el material de la lancha(madera/metal)",Material.class);
-                            Lancha lancha = new Lancha(maximo,numeroDePasajeros, tripulacion,numeroDeRuedas,fecha,medio, color,material);
+                            Lancha lancha = crearLancha(numeroDeVehiculos);
                             vehiculos.add(lancha);
 
                         }
                         else if (categoria == 2){
-                            int numeroDePasajeros = verificarEntero(pregunta, "Ingrese la cantidad de pasajeros:");
-                            boolean tripulacion = verificarBooleano(pregunta,"Ingrese si tiene tripulación (true/false):");
-                            int numeroDeRuedas= verificarEntero(pregunta,"Ingrese la cantidad de ruedas:" );
-                            LocalDate fecha = verificarFecha(pregunta,"Ingrese la fecha de matriculación (dd/MM/yyyy):");
-                            MedioDeDesplazamiento medio = verificarEnum(pregunta
-                                    ,"Ingrese el medio de desplazamiento :(Tierra/Agua/Aire)", MedioDeDesplazamiento.class);
-                            Color color = verificarEnum(pregunta, ("Ingrese el color (rojo, azul ,negro,blanco)"),Color.class);
-                            Transmision transmision = verificarEnum(pregunta,"ingrese la transmision del carro(automatico/manual):",Transmision.class);
-                            Coche coche= new Coche(maximo,numeroDePasajeros, tripulacion,transmision,numeroDeRuedas,fecha,medio, color);
+                            Coche coche = crearCoche(numeroDeVehiculos);
                             vehiculos.add(coche);
                         }
                         else if (categoria == 3){
-                            int numeroDePasajeros = verificarEntero(pregunta, "Ingrese la cantidad de pasajeros:");
-                            boolean tripulacion = verificarBooleano(pregunta,"Ingrese si tiene tripulación (true/false):");
-                            int numeroDeRuedas= verificarEntero(pregunta,"Ingrese la cantidad de ruedas:" );
-                            LocalDate fecha = verificarFecha(pregunta,"Ingrese la fecha de matriculación (dd/MM/yyyy):");
-                            MedioDeDesplazamiento medio = verificarEnum(pregunta
-                                    ,"Ingrese el medio de desplazamiento :(Tierra/Agua/Aire)", MedioDeDesplazamiento.class);
-                            Color color = verificarEnum(pregunta, ("Ingrese el color (rojo, azul ,negro,blanco)"),Color.class);
-                            Uso uso = verificarEnum(pregunta,"ingrese el uso(urbano/montaña)",Uso.class);
-                            Bicicleta bicicleta= new Bicicleta(maximo,numeroDePasajeros,uso, tripulacion,numeroDeRuedas,fecha,medio, color);
+                            Bicicleta bicicleta= crearBicicleta(numeroDeVehiculos);
                             vehiculos.add(bicicleta);
                         }
                         else if (categoria == 4){
-                            int numeroDePasajeros = verificarEntero(pregunta, "Ingrese la cantidad de pasajeros:");
-                            boolean tripulacion = verificarBooleano(pregunta,"Ingrese si tiene tripulación (true/false):");
-                            int numeroDeRuedas= verificarEntero(pregunta,"Ingrese la cantidad de ruedas:" );
-                            LocalDate fecha = verificarFecha(pregunta,"Ingrese la fecha de matriculación (dd/MM/yyyy):");
-                            MedioDeDesplazamiento medio = verificarEnum(pregunta
-                                    ,"Ingrese el medio de desplazamiento :(Tierra/Agua/Aire)", MedioDeDesplazamiento.class);
-                            Color color = verificarEnum(pregunta, ("Ingrese el color (rojo, azul ,negro,blanco)"),Color.class);
-                            Tipo tipo= verificarEnum(pregunta,"ingrese el tipo(militar/comercial/privado):",Tipo.class);
-                            Avion avion= new Avion(maximo,numeroDePasajeros, tripulacion,tipo,numeroDeRuedas,fecha,medio, color);
+                            Avion avion = crearAvion(numeroDeVehiculos);
                             vehiculos.add(avion);
+                        }
+                        else {
+                            System.out.println("opcion invalida");
                         }
 
                     }
@@ -94,9 +80,8 @@ public class Main {
                         System.out.println(vehiculo.toString());
                     }
 
-
-                    }
                     break;
+                    }
 
                 case 2:{
                     // Salir del programa
