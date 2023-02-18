@@ -76,6 +76,7 @@ public class Main {
                         }
 
                     }
+                    //Imprime los vehiculos añadidos
                     for (Vehiculo vehiculo:vehiculos) {
                         System.out.println(vehiculo.toString());
                     }
